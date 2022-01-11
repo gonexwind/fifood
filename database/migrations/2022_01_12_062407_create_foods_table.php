@@ -18,7 +18,7 @@ class CreateFoodsTable extends Migration
             $table->string('types')->nullable();
             $table->text('picturePath')->nullable();
             $table->softDeletes();
-            
+
             $table->timestamps();
         });
     }
