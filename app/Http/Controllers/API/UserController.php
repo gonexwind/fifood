@@ -98,4 +98,9 @@ class UserController extends Controller
         $user->update($data);
         return ResponseFormatter::success($user, 'Profile Updated');
     }
+
+    public function fetch(Request $request)
+    {
+        return ResponseFormatter::success($request->user(), 'User Fetched');
+    }
 }
