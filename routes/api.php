@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\API\FoodController;
+use App\Http\Controllers\API\TransactionController;
 use App\Http\Controllers\API\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -26,5 +27,6 @@ Route::prefix('v1')->group(function () {
         Route::post('user', [UserController::class, 'updateProfile']);
         Route::post('user/photo', [UserController::class, 'updatePhoto']);
         Route::get('logout', [UserController::class, 'logout']);
+        Route::get('transactions', [TransactionController::class, 'all']);
     });
 });
