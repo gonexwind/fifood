@@ -20,7 +20,8 @@ Route::prefix('v1')->group(function () {
 
     Route::middleware('auth:sanctum')->group(function () {
         Route::get('user', [UserController::class, 'fetch']);
+        Route::post('user', [UserController::class, 'updateProfile']);
+        Route::post('user/photo', [UserController::class, 'updatePhoto']);
         Route::get('logout', [UserController::class, 'logout']);
-        Route::post('update-profile', [UserController::class, 'updateProfile']);
     });
 });
