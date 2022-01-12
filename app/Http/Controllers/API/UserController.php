@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Auth;
 use Hash;
 use Exception;
+use Laravel\Fortify\Rules\Password;
 
 class UserController extends Controller
 {
@@ -36,6 +37,43 @@ class UserController extends Controller
             return ResponseFormatter::success([
                 'access_token' => $token,
                 'token_type' => 'Bearer',
+                'user' => $user,
+            ], 'Authenticated');
+
+        } catch (Exception $exception) {
+            return ResponseFormatter::error([
+                'message' => 'Unathorized',
+                'error' => $exception,
+            ], 'Authenticated Failed', 500);
+        }
+    }
+
+    public function register(Request $request)
+    {
+        try {
+            $request->validate([
+                'name' => 'required|string|max:255',
+                'email' => 'required|string|email|max:255|unique:users',
+                'password' => ['required', 'string', new Password],
+            ]);
+
+            User::create([
+                'name' => $request->name,
+                'email' => $request->email,
+                'address' => $request->address,
+                'houseNumber' => $request->houseNumber,
+                'phoneNumber' => $request->phoneNumber,
+                'city' => $request->city,
+                'password' => Hash::make($request->password),
+            ]);
+
+            $user = User::where('email', $request->email)->first();
+
+            $token = $user->createToken('authToken')->plainTextToken;
+
+            return ResponseFormatter::success([
+                'access_token' => $token,
+                'token-type' => 'Bearer',
                 'user' => $user,
             ], 'Authenticated');
 
