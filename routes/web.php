@@ -16,10 +16,10 @@ use Illuminate\Support\Facades\Route;
 
 // Homepage
 Route::get('/', function () {
-    return Redirect::route('admin-dashboard');
+    return Redirect::route('dashboard');
 });
 
 // Dashboard
 Route::prefix('dashboard')->middleware(['auth:sanctum', 'admin'])->group(function () {
-    Route::get('/', [DashboardController::class, 'index'])->name('admin-dashboard');
+    Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 });
