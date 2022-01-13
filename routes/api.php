@@ -27,6 +27,8 @@ Route::prefix('v1')->group(function () {
         Route::post('user', [UserController::class, 'updateProfile']);
         Route::post('user/photo', [UserController::class, 'updatePhoto']);
         Route::get('logout', [UserController::class, 'logout']);
+
         Route::get('transactions', [TransactionController::class, 'all']);
+        Route::post('transactions/{id}', [TransactionController::class, 'update']);
     });
 });
