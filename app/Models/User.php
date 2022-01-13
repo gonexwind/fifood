@@ -33,6 +33,7 @@ class User extends Authenticatable
         'phoneNumber',
         'city',
         'roles',
+        'profile_photo_path'
     ];
 
     /**

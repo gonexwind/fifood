@@ -50,7 +50,7 @@
                         </tr>
                     @empty
                         <tr>
-                            <td colspan="5" class="boder text-center p-5">
+                            <td colspan="5" class="border text-center p-5">
                                 Data is Empty
                             </td>
                         </tr>
